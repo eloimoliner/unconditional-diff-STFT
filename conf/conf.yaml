@@ -1,0 +1,97 @@
+defaults:
+  - dset: pianos
+
+model_dir: "experiments/1"
+
+architecture: "unet_stft" #"unet"
+
+sample_rate: 22050
+audio_len: 65536
+
+#training functionality parameters
+num_workers: 4 #useful to speed up the dataloader
+device: "cpu" #it will be updated in the code, no worries
+
+
+  
+save_model: True
+
+unet2d:
+  use_attention: True
+  attention:
+    attention_indexes: [5,6]
+    num_heads: 4
+    use_pos_encodings: True
+  stft:
+    win_size: 1024
+    hop_size: 256
+  depth: 6
+  f_dim: 513
+  use_weight_norm: False
+  use_fencoding: True
+  activation: "elu"
+  num_tfc: 3
+  Ns: [128, 128,256,256,512,512,512,512,512,512]
+  ksize_init: [7,7]    
+  ksize_encoder: [3,3]    
+  ksize_hc: [7,7]    
+  ksize_decoder: [3,3]    
+  ksize_bn: [3,3]    
+
+#
+lr: 2e-4 #used
+#schedule_sampler: "uniform"
+#weight_decay: 0.0
+#lr_anneal_steps: 0
+batch_size: 8
+
+microbatches: 2  # -1 disables microbatches
+#ema_rate: "0.9999"  # comma-separated list of EMA values
+ema_rate: 0.9999  
+
+#for lr scheduler (not noise schedule!!)
+scheduler_step_size: 60000
+scheduler_gamma: 0.8
+
+restore : False
+checkpoint_id: None
+
+
+#logging params
+log_interval: 10
+save_interval: 20
+#
+#'num_epochs_to_save':          1,  # number of epochs between two weights saving
+# number of steps between two evaluations of the test set
+#     'num_steps_to_test':           8000,
+#Monitoring IDK what it is
+n_bins: 10
+#
+#
+#
+inference:
+  checkpoint:  None
+  exp_name: "testing"
+  T: 250
+  num_sample_chunks: 20
+  stereo: False
+ 
+
+sde_type: 'vp-cos'
+sde_kwargs:
+  gamma: None
+  eta: None
+  sigma_min: 1e-4
+  sigma_max: 0.999
+
+     
+hydra:
+  job:
+    config:
+      # configuration for the ${hydra.job.override_dirname} runtime variable
+      override_dirname:
+        kv_sep: '='
+        item_sep: ','
+        # Remove all paths, as the / in them would mess up things
+        exclude_keys: ['path_experiment',
+          'hydra.job_logging.handles.file.filename']
