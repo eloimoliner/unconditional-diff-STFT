@@ -17,7 +17,7 @@ device: "cpu" #it will be updated in the code, no worries
 save_model: True
 
 unet2d:
-  use_attention: True
+  use_attention: False
   attention:
     attention_indexes: [5,6]
     num_heads: 4

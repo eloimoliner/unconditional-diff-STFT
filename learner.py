@@ -109,7 +109,7 @@ class Learner:
             return False
 
     def sample(self):
-        self.sampler=SDESampling2(self.model,self.sde)
+        self.sampler=SDESampling(self.model,self.sde)
         device = self.device
         noise = torch.randn(8, self.args.audio_len, device=device)
         res=self.sampler.predict(noise,100)
