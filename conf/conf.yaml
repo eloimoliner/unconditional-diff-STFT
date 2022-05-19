@@ -17,7 +17,7 @@ device: "cpu" #it will be updated in the code, no worries
 save_model: True
 
 unet2d:
-  use_attention: False
+  use_attention: True
   attention:
     attention_indexes: [5,6]
     num_heads: 4
@@ -31,7 +31,7 @@ unet2d:
   use_fencoding: True
   activation: "elu"
   num_tfc: 3
-  Ns: [128, 128,256,256,512,512,512,512,512,512]
+  Ns: [128, 128,256,256,512,512,512,512]
   ksize_init: [7,7]    
   ksize_encoder: [3,3]    
   ksize_hc: [7,7]    
