@@ -4,7 +4,6 @@ Train a diffusion model on images.
 """
 import soundfile as sf
 import os
-import hydra
 import logging
 from tqdm import tqdm
 import torch
@@ -258,6 +257,7 @@ class SDESampling_context:
 
 def _main(args):
     global __file__
+    import hydra
     __file__ = hydra.utils.to_absolute_path(__file__)
     run(args)
 
