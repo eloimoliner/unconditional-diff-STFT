@@ -2,6 +2,7 @@ Unconditional synthesis of music using a diffusion model in the STFT domain.
 
 This repository is the result of a set of experiments training a diffusion model to unconditionally synthesize piano music. The model, based on the complex-spectrogram domain shows superior performance to previous works using time-domain models as the backbone of a diffusion model. 
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eloimoliner/denoising-historical-recordings/blob/master/colab/demo.ipynb)
 ## Implementation details
 
 ## References
