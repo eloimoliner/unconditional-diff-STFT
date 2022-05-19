@@ -8,6 +8,7 @@ import logging
 from tqdm import tqdm
 import torch
 import numpy as npp
+import hydra
 
 import dataset_loader
 
@@ -257,7 +258,6 @@ class SDESampling_context:
 
 def _main(args):
     global __file__
-    import hydra
     __file__ = hydra.utils.to_absolute_path(__file__)
     run(args)
 
